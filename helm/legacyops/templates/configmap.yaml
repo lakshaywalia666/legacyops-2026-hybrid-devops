@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: legacyops-config
+  namespace: {{ .Values.namespace.name }}
+  labels:
+    app.kubernetes.io/name: {{ .Values.app.name }}
+    app.kubernetes.io/part-of: {{ .Values.app.partOf }}
+    app.kubernetes.io/managed-by: Helm
+data:
+  APP_NAME: {{ .Values.config.APP_NAME | quote }}
+  APP_ENV: {{ .Values.config.APP_ENV | quote }}
+  APP_VERSION: {{ .Values.config.APP_VERSION | quote }}
+  REDIS_REQUIRED: {{ .Values.config.REDIS_REQUIRED | quote }}
+  CORS_ORIGINS: {{ .Values.config.CORS_ORIGINS | quote }}
+  REDIS_URL: {{ .Values.config.REDIS_URL | quote }}
