@@ -27,10 +27,10 @@ Completed so far:
 - Kubernetes deployment using K3s
 - Frontend and backend verified through Kubernetes NodePort services
 - Kubernetes deployment proof documented in docs/kubernetes-deployment-proof.md
+- Helm chart for Kubernetes deployment
+- Helm deployment proof documented in docs/helm-deployment-proof.md
 
 Planned next milestones:
-
-- Helm chart
 - Jenkins pipeline
 - Terraform infrastructure
 - Ansible automation
