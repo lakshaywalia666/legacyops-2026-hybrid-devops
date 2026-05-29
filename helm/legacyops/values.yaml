@@ -1,0 +1,74 @@
+namespace:
+  name: legacyops
+
+app:
+  name: legacyops
+  partOf: legacyops-2026
+  version: "1.0.0"
+
+backend:
+  name: legacyops-backend
+  replicaCount: 1
+  image:
+    repository: ghcr.io/lakshaywalia666/legacyops-2026-hybrid-devops/legacyops-backend
+    tag: latest
+    pullPolicy: IfNotPresent
+  service:
+    type: NodePort
+    port: 8000
+    targetPort: 8000
+    nodePort: 30081
+
+frontend:
+  name: legacyops-frontend
+  replicaCount: 1
+  image:
+    repository: ghcr.io/lakshaywalia666/legacyops-2026-hybrid-devops/legacyops-frontend
+    tag: latest
+    pullPolicy: IfNotPresent
+  service:
+    type: NodePort
+    port: 80
+    targetPort: 80
+    nodePort: 30080
+
+postgres:
+  name: legacyops-postgres
+  replicaCount: 1
+  image:
+    repository: postgres
+    tag: 16-alpine
+    pullPolicy: IfNotPresent
+  service:
+    type: ClusterIP
+    port: 5432
+    targetPort: 5432
+  persistence:
+    enabled: true
+    size: 1Gi
+
+redis:
+  name: legacyops-redis
+  replicaCount: 1
+  image:
+    repository: redis
+    tag: 7-alpine
+    pullPolicy: IfNotPresent
+  service:
+    type: ClusterIP
+    port: 6379
+    targetPort: 6379
+
+config:
+  APP_NAME: "Legacy Retail Operations System"
+  APP_ENV: "kubernetes"
+  APP_VERSION: "1.0.0"
+  REDIS_REQUIRED: "true"
+  CORS_ORIGINS: "http://localhost:3000,http://localhost:30080,http://192.168.1.13:30080"
+  REDIS_URL: "redis://legacyops-redis:6379/0"
+
+secret:
+  POSTGRES_DB: "legacyops"
+  POSTGRES_USER: "legacyops"
+  POSTGRES_PASSWORD: "legacyops"
+  DATABASE_URL: "postgresql+psycopg2://legacyops:legacyops@legacyops-postgres:5432/legacyops"
