@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: legacyops-frontend:compose
+          image: ghcr.io/lakshaywalia666/legacyops-2026-hybrid-devops/legacyops-frontend:latest
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 80
