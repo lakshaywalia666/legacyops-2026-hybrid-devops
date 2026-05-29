@@ -1,0 +1,103 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: legacyops-postgres-data
+  namespace: legacyops
+  labels:
+    app.kubernetes.io/name: legacyops-postgres
+    app.kubernetes.io/part-of: legacyops-2026
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: legacyops-postgres
+  namespace: legacyops
+  labels:
+    app.kubernetes.io/name: legacyops-postgres
+    app.kubernetes.io/part-of: legacyops-2026
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: legacyops-postgres
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: legacyops-postgres
+        app.kubernetes.io/part-of: legacyops-2026
+    spec:
+      containers:
+        - name: postgres
+          image: postgres:16-alpine
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 5432
+              name: postgres
+          env:
+            - name: POSTGRES_DB
+              valueFrom:
+                secretKeyRef:
+                  name: legacyops-secret
+                  key: POSTGRES_DB
+            - name: POSTGRES_USER
+              valueFrom:
+                secretKeyRef:
+                  name: legacyops-secret
+                  key: POSTGRES_USER
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: legacyops-secret
+                  key: POSTGRES_PASSWORD
+          readinessProbe:
+            exec:
+              command:
+                - pg_isready
+                - -U
+                - legacyops
+                - -d
+                - legacyops
+            initialDelaySeconds: 10
+            periodSeconds: 10
+          livenessProbe:
+            exec:
+              command:
+                - pg_isready
+                - -U
+                - legacyops
+                - -d
+                - legacyops
+            initialDelaySeconds: 30
+            periodSeconds: 20
+          volumeMounts:
+            - name: postgres-data
+              mountPath: /var/lib/postgresql/data
+      volumes:
+        - name: postgres-data
+          persistentVolumeClaim:
+            claimName: legacyops-postgres-data
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: legacyops-postgres
+  namespace: legacyops
+  labels:
+    app.kubernetes.io/name: legacyops-postgres
+    app.kubernetes.io/part-of: legacyops-2026
+spec:
+  type: ClusterIP
+  selector:
+    app.kubernetes.io/name: legacyops-postgres
+  ports:
+    - name: postgres
+      port: 5432
+      targetPort: 5432
