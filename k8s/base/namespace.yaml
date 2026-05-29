@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: legacyops
+  labels:
+    app.kubernetes.io/name: legacyops
+    app.kubernetes.io/part-of: legacyops-2026
