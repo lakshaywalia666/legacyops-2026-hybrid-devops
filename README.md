@@ -29,9 +29,10 @@ Completed so far:
 - Kubernetes deployment proof documented in docs/kubernetes-deployment-proof.md
 - Helm chart for Kubernetes deployment
 - Helm deployment proof documented in docs/helm-deployment-proof.md
+- Jenkins pipeline for CI validation
+- Jenkins pipeline proof documented in docs/jenkins-pipeline-proof.md
 
 Planned next milestones:
-- Jenkins pipeline
 - Terraform infrastructure
 - Ansible automation
 - Prometheus, Grafana, and Loki observability
