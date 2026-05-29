@@ -1,149 +1,227 @@
-# LegacyOps 2026 — Hybrid DevOps Modernization Platform
+# Merge PR #15 first if it is still open
+if gh pr view 15 --json state --jq .state 2>/dev/null | grep -q OPEN; then
+  gh pr checks 15 --watch
+  gh pr merge 15 --merge --delete-branch
+fi
 
-[![LegacyOps CI](https://github.com/lakshaywalia666/legacyops-2026-hybrid-devops/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/lakshaywalia666/legacyops-2026-hybrid-devops/actions/workflows/ci.yml)
+git checkout main
+git pull origin main
+git checkout -b feature/polish-project-readme
 
-LegacyOps 2026 is a full-stack retail operations application used as a production-style DevOps modernization project.
+cat > README.md <<'EOF'
+# 🚀 LegacyOps 2026 — Hybrid DevOps Portfolio Project
 
-The goal of this project is to demonstrate real-world DevOps skills across containerization, CI/CD, infrastructure automation, Kubernetes, monitoring, and hybrid cloud operations.
-
----
-
-## Project status
-
-Completed so far:
-
-- Backend containerization with Docker
-- Frontend containerization with Docker
-- Full local stack using Docker Compose
-- PostgreSQL service
-- Redis service
-- FastAPI backend service
-- React/Vite frontend service served through Nginx
-- GitHub Actions CI pipeline
-- Pull request based workflow
-- CI validation for backend, frontend, and Docker Compose stack
-- GHCR container image publishing
-- Kubernetes base manifests
-- Kubernetes deployment using K3s
-- Frontend and backend verified through Kubernetes NodePort services
-- Kubernetes deployment proof documented in docs/kubernetes-deployment-proof.md
-- Helm chart for Kubernetes deployment
-- Helm deployment proof documented in docs/helm-deployment-proof.md
-- Jenkins pipeline for CI validation
-- Jenkins pipeline proof documented in docs/jenkins-pipeline-proof.md
-
-Planned next milestones:
-- Terraform infrastructure
-- Ansible automation
-- Prometheus, Grafana, and Loki observability
-- Backup and restore automation
-- Argo CD GitOps deployment
+![DevOps](https://img.shields.io/badge/DevOps-Portfolio-blue)
+![Docker](https://img.shields.io/badge/Docker-Containerized-2496ED)
+![Kubernetes](https://img.shields.io/badge/Kubernetes-K3s-326CE5)
+![CI/CD](https://img.shields.io/badge/CI%2FCD-GitHub%20Actions-success)
+![Jenkins](https://img.shields.io/badge/Jenkins-Pipeline-D24939)
+![Helm](https://img.shields.io/badge/Helm-Chart-0F1689)
+![Status](https://img.shields.io/badge/Status-Production--Style%20Portfolio-brightgreen)
 
 ---
 
-## Architecture
+## 📌 Project Overview
+
+**LegacyOps 2026** is a production-style DevOps portfolio project built to demonstrate a real-world software delivery workflow.
+
+The project simulates a **Legacy Retail Operations System** and shows how a full-stack application can be containerized, validated, deployed, and documented using modern DevOps practices.
+
+This project includes:
+
+- 🐳 Docker containerization
+- 🧩 Docker Compose local orchestration
+- ⚙️ GitHub Actions CI validation
+- 📦 GHCR container image workflow
+- 🧪 Jenkins pipeline validation
+- ☸️ Kubernetes deployment using K3s
+- ⛵ Helm chart deployment
+- 🗄️ PostgreSQL database service
+- ⚡ Redis cache service
+- 📄 Deployment proof documentation
+- 🔁 Clean GitHub branch and pull request workflow
+
+---
+
+## 🎯 Project Goal
+
+The goal of this project is to prove practical DevOps skills by building and validating an end-to-end deployment workflow.
+
+This is not only a code repository. It is a complete DevOps delivery project showing:
 
 ```text
-User Browser
-    |
-    v
-Frontend Container
-React + Vite + Nginx
-Port 3000
-    |
-    v
-Backend Container
-Python FastAPI
-Port 8000
-    |
-    +------------------+
-    |                  |
-    v                  v
-PostgreSQL          Redis
-Port 5432           Port 6379
+Code
+↓
+Docker Build
+↓
+Docker Compose Validation
+↓
+CI/CD Validation
+↓
+Container Registry
+↓
+Kubernetes Deployment
+↓
+Helm Packaging
+↓
+Deployment Proof
 ```
 
 ---
 
-## Application stack
+## ✅ Project Status
 
-| Layer | Technology |
+| Area | Status |
 |---|---|
-| Frontend | React, Vite, Nginx |
-| Backend | Python, FastAPI, Uvicorn |
-| Database | PostgreSQL |
-| Cache / Queue | Redis |
-| Containerization | Docker |
-| Local orchestration | Docker Compose |
-| CI/CD | GitHub Actions |
-| Source control | Git, GitHub |
+| Backend application | ✅ Completed |
+| Frontend application | ✅ Completed |
+| PostgreSQL integration | ✅ Completed |
+| Redis integration | ✅ Completed |
+| Dockerfiles | ✅ Completed |
+| Docker Compose stack | ✅ Completed |
+| GitHub Actions CI | ✅ Completed |
+| GHCR image workflow | ✅ Completed |
+| Jenkins validation | ✅ Completed |
+| Kubernetes manifests | ✅ Completed |
+| K3s deployment proof | ✅ Completed |
+| Helm chart | ✅ Completed |
+| Helm deployment proof | ✅ Completed |
+| Documentation | ✅ Completed |
 
 ---
 
-## Repository structure
+## 🧱 Architecture
+
+```mermaid
+flowchart TD
+    User[👤 User Browser] --> Frontend[🌐 Frontend Service]
+
+    Frontend --> Backend[⚙️ Backend API]
+
+    Backend --> Postgres[(🗄️ PostgreSQL)]
+    Backend --> Redis[(⚡ Redis)]
+
+    Backend --> Health[/health/]
+    Backend --> Ready[/ready/]
+
+    subgraph Docker
+        Frontend
+        Backend
+        Postgres
+        Redis
+    end
+
+    subgraph Kubernetes_K3s
+        K8sFrontend[Frontend Deployment]
+        K8sBackend[Backend Deployment]
+        K8sPostgres[Postgres Deployment]
+        K8sRedis[Redis Deployment]
+    end
+
+    GHCR[📦 GitHub Container Registry] --> K8sFrontend
+    GHCR --> K8sBackend
+```
+
+---
+
+## 🛠️ Tech Stack
+
+| Category | Technology |
+|---|---|
+| Version Control | Git, GitHub |
+| CI/CD | GitHub Actions |
+| Additional CI | Jenkins |
+| Containerization | Docker |
+| Local Orchestration | Docker Compose |
+| Container Registry | GitHub Container Registry |
+| Kubernetes | K3s |
+| Kubernetes Packaging | Helm |
+| Backend Runtime | Backend API Service |
+| Frontend Runtime | Nginx-served frontend |
+| Database | PostgreSQL |
+| Cache | Redis |
+| Documentation | Markdown proof files |
+
+---
+
+## 📁 Repository Structure
 
 ```text
 legacyops-application/
 ├── .github/
 │   └── workflows/
-│       └── ci.yml
-├── app/
-│   ├── backend/
-│   │   ├── app/
-│   │   ├── Dockerfile
-│   │   ├── .dockerignore
-│   │   └── requirements.txt
-│   ├── frontend/
-│   │   ├── src/
-│   │   ├── Dockerfile
-│   │   ├── .dockerignore
-│   │   ├── package.json
-│   │   └── package-lock.json
-│   └── worker/
+│       └── GitHub Actions CI workflows
+│
+├── backend/
+│   └── Backend application source
+│
+├── frontend/
+│   └── Frontend application source
+│
 ├── docs/
+│   ├── API_CONTRACT.md
+│   ├── DATABASE_SCHEMA.md
+│   ├── DEVELOPER_PROMPT_USED.md
+│   ├── DEVOPS_HANDOFF_NOTES.md
+│   ├── helm-deployment-proof.md
+│   ├── jenkins-pipeline-proof.md
+│   ├── kubernetes-deployment-proof.md
+│   └── kubernetes-home-lab-validation.md
+│
+├── helm/
+│   └── legacyops/
+│       └── Helm chart for Kubernetes deployment
+│
+├── k8s/
+│   └── base/
+│       ├── backend.yaml
+│       ├── configmap.yaml
+│       ├── frontend.yaml
+│       ├── kustomization.yaml
+│       ├── namespace.yaml
+│       ├── postgres.yaml
+│       ├── redis.yaml
+│       └── secret.yaml
+│
 ├── docker-compose.yml
 └── README.md
 ```
 
 ---
 
-## Run locally with Docker Compose
+## 🐳 Run Locally with Docker Compose
 
 ### 1. Start the full stack
 
 ```bash
-docker compose up -d
+docker compose up -d --build
 ```
 
-This starts:
-
-- PostgreSQL
-- Redis
-- Backend
-- Frontend
-
-### 2. Check container status
+### 2. Check running services
 
 ```bash
 docker compose ps
 ```
 
+### 3. Test frontend
+
+```bash
+curl -I http://localhost:3000
+```
+
 Expected result:
 
 ```text
-legacyops-postgres   healthy
-legacyops-redis      healthy
-legacyops-backend    healthy
-legacyops-frontend   healthy
+HTTP/1.1 200 OK
 ```
 
-### 3. Test backend health
+### 4. Test backend health
 
 ```bash
 curl -s http://localhost:8000/health && echo
 ```
 
-Expected response:
+Expected result:
 
 ```json
 {
@@ -154,179 +232,412 @@ Expected response:
 }
 ```
 
-### 4. Test frontend
+### 5. Test backend readiness
 
 ```bash
-curl -I http://localhost:3000
+curl -s http://localhost:8000/ready && echo
 ```
 
-Expected response:
+Expected result:
 
-```text
-HTTP/1.1 200 OK
-```
-
-Open the frontend in browser:
-
-```text
-http://localhost:3000
+```json
+{
+  "status": "ready",
+  "dependencies": {
+    "database": "ok",
+    "redis": "ok"
+  }
+}
 ```
 
 ---
 
-## Useful local URLs
+## 📦 Container Images
 
-| Service | URL |
+The project uses GitHub Container Registry images for Kubernetes deployment.
+
+```text
+Backend:
+ghcr.io/lakshaywalia666/legacyops-2026-hybrid-devops/legacyops-backend:latest
+
+Frontend:
+ghcr.io/lakshaywalia666/legacyops-2026-hybrid-devops/legacyops-frontend:latest
+```
+
+---
+
+## ⚙️ CI/CD with GitHub Actions
+
+GitHub Actions validates the project automatically on push and pull request events.
+
+The CI pipeline validates:
+
+- ✅ Backend checks
+- ✅ Frontend checks
+- ✅ Docker Compose configuration
+- ✅ Docker Compose service startup
+- ✅ Pull request quality before merge
+
+Example successful checks:
+
+```text
+LegacyOps CI / Backend validation
+LegacyOps CI / Frontend validation
+LegacyOps CI / Docker Compose validation
+```
+
+---
+
+## 🧪 Jenkins Pipeline
+
+This project also includes Jenkins validation to demonstrate hybrid CI/CD experience.
+
+Jenkins proof is documented here:
+
+```text
+docs/jenkins-pipeline-proof.md
+```
+
+The Jenkins validation proves:
+
+- ✅ Repository checkout
+- ✅ Pipeline execution
+- ✅ Backend validation
+- ✅ Frontend validation
+- ✅ CI-style automation outside GitHub Actions
+
+---
+
+## ☸️ Kubernetes Deployment with K3s
+
+LegacyOps is deployed on a local Kubernetes cluster using **K3s**.
+
+### Apply Kubernetes manifests
+
+```bash
+kubectl apply -k k8s/base
+```
+
+### Check pods
+
+```bash
+kubectl get pods -n legacyops -o wide
+```
+
+Expected result:
+
+```text
+legacyops-backend    1/1 Running
+legacyops-frontend   1/1 Running
+legacyops-postgres   1/1 Running
+legacyops-redis      1/1 Running
+```
+
+### Check services
+
+```bash
+kubectl get svc -n legacyops -o wide
+```
+
+Expected services:
+
+```text
+legacyops-frontend   NodePort   80:30080/TCP
+legacyops-backend    NodePort   8000:30081/TCP
+legacyops-postgres   ClusterIP  5432/TCP
+legacyops-redis      ClusterIP  6379/TCP
+```
+
+---
+
+## 🌐 Kubernetes Access URLs
+
+Replace `<node-ip>` with your Kubernetes node IP.
+
+```text
+Frontend:
+http://<node-ip>:30080
+
+Backend health:
+http://<node-ip>:30081/health
+
+Backend readiness:
+http://<node-ip>:30081/ready
+```
+
+Example from the validated home lab deployment:
+
+```text
+Frontend:
+http://192.168.1.13:30080
+
+Backend:
+http://192.168.1.13:30081
+```
+
+---
+
+## ✅ Kubernetes Proof
+
+Kubernetes deployment proof is documented here:
+
+```text
+docs/kubernetes-deployment-proof.md
+```
+
+The proof confirms:
+
+- ✅ All pods are running
+- ✅ All deployments are available
+- ✅ Frontend returns HTTP 200
+- ✅ Backend `/health` returns OK
+- ✅ Backend `/ready` confirms PostgreSQL and Redis connectivity
+
+Validated readiness output:
+
+```json
+{
+  "status": "ready",
+  "dependencies": {
+    "database": "ok",
+    "redis": "ok"
+  }
+}
+```
+
+---
+
+## ⛵ Helm Deployment
+
+The project includes a Helm chart for Kubernetes deployment.
+
+Helm chart path:
+
+```text
+helm/legacyops
+```
+
+### Install with Helm
+
+```bash
+helm upgrade --install legacyops ./helm/legacyops \
+  --namespace legacyops \
+  --create-namespace
+```
+
+### Check Helm release
+
+```bash
+helm list -n legacyops
+```
+
+### Helm proof
+
+```text
+docs/helm-deployment-proof.md
+```
+
+---
+
+## 📄 Documentation
+
+| Document | Purpose |
 |---|---|
-| Frontend | http://localhost:3000 |
-| Backend health | http://localhost:8000/health |
-| Backend readiness | http://localhost:8000/ready |
-| Backend Swagger docs | http://localhost:8000/docs |
-| Backend metrics | http://localhost:8000/metrics |
+| `docs/API_CONTRACT.md` | API behavior and endpoint contract |
+| `docs/DATABASE_SCHEMA.md` | Database schema documentation |
+| `docs/DEVOPS_HANDOFF_NOTES.md` | DevOps handoff notes |
+| `docs/jenkins-pipeline-proof.md` | Jenkins validation proof |
+| `docs/kubernetes-deployment-proof.md` | Kubernetes deployment proof |
+| `docs/kubernetes-home-lab-validation.md` | Home lab Kubernetes validation |
+| `docs/helm-deployment-proof.md` | Helm deployment proof |
 
 ---
 
-## Docker Compose services
+## 🔍 Important Health Endpoints
 
-| Service | Container name | Port |
-|---|---|---|
-| postgres | legacyops-postgres | 5432 |
-| redis | legacyops-redis | 6379 |
-| backend | legacyops-backend | 8000 |
-| frontend | legacyops-frontend | 3000 |
+| Endpoint | Purpose |
+|---|---|
+| `/health` | Confirms backend service is running |
+| `/ready` | Confirms backend dependencies are ready |
+
+Example:
+
+```bash
+curl -s http://localhost:8000/health && echo
+curl -s http://localhost:8000/ready && echo
+```
 
 ---
 
-## Stop the stack
+## 🔁 Git Workflow Used
+
+This project follows a clean branch and pull request workflow.
+
+```text
+main
+↓
+feature branch
+↓
+commit
+↓
+push branch
+↓
+open pull request
+↓
+CI checks
+↓
+merge to main
+```
+
+Example branches used:
+
+```text
+feature/kubernetes-base
+feature/ghcr-kubernetes-images
+feature/add-kubernetes-proof
+feature/clean-kubernetes-proof-docs
+feature/polish-project-readme
+```
+
+---
+
+## 🧪 Validation Checklist
+
+| Validation | Status |
+|---|---|
+| Docker Compose starts successfully | ✅ |
+| Frontend returns HTTP 200 locally | ✅ |
+| Backend health endpoint works | ✅ |
+| Backend readiness checks database and Redis | ✅ |
+| GitHub Actions checks pass | ✅ |
+| Jenkins proof completed | ✅ |
+| Kubernetes manifests render successfully | ✅ |
+| Kubernetes pods run successfully | ✅ |
+| Kubernetes NodePort frontend works | ✅ |
+| Kubernetes backend health works | ✅ |
+| Kubernetes backend readiness works | ✅ |
+| Helm chart exists | ✅ |
+| Helm deployment proof exists | ✅ |
+
+---
+
+## 🧹 Cleanup Commands
+
+### Stop Docker Compose
 
 ```bash
 docker compose down
 ```
 
-Stop and remove volumes:
+### Stop Docker Compose and remove volumes
 
 ```bash
 docker compose down -v
 ```
 
----
-
-## Rebuild after code changes
+### Remove Kubernetes deployment
 
 ```bash
-docker compose build
-docker compose up -d
-```
-
-Or rebuild and start together:
-
-```bash
-docker compose up -d --build
+kubectl delete namespace legacyops
 ```
 
 ---
 
-## GitHub Actions CI
+## 🧠 Skills Demonstrated
 
-The project includes a GitHub Actions workflow at:
+This project demonstrates practical DevOps skills including:
+
+- Building production-style project structure
+- Writing Dockerfiles
+- Running multi-service apps with Docker Compose
+- Creating CI pipelines with GitHub Actions
+- Using GitHub pull request workflows
+- Publishing and using container images from GHCR
+- Running Jenkins validation
+- Deploying services to Kubernetes
+- Managing Kubernetes Deployments, Services, Secrets, ConfigMaps, and PVCs
+- Using NodePort services for local home lab exposure
+- Creating Helm charts
+- Writing deployment proof documentation
+- Debugging service health and readiness
+
+---
+
+## 🚀 Why This Project Matters
+
+LegacyOps 2026 proves that the project is not just code.
+
+It proves the full DevOps lifecycle:
 
 ```text
-.github/workflows/ci.yml
+Build → Test → Package → Deploy → Validate → Document
 ```
 
-The CI pipeline runs on:
+This makes the project useful for:
 
-- Pushes to `main`
-- Pushes to `feature/**` branches
-- Pull requests targeting `main`
-
-CI validates:
-
-1. Backend Python dependencies
-2. Backend source compilation
-3. FastAPI application import
-4. Frontend dependency installation
-5. Frontend production build
-6. Docker Compose config
-7. Docker image builds
-8. Full stack startup
-9. Backend health endpoint
-10. Frontend HTTP response
+- DevOps engineer portfolio
+- Cloud engineer portfolio
+- CI/CD practice
+- Kubernetes practice
+- Docker and containerization practice
+- Interview discussion
+- Resume project proof
 
 ---
 
-## Local backend run without Docker
+## 🔮 Future Improvements
 
-```bash
-cd app/backend
-python -m venv .venv
-source .venv/bin/activate
-pip install -r requirements.txt
+Planned future improvements:
 
-export DATABASE_URL="postgresql+psycopg2://legacyops:legacyops@localhost:5432/legacyops"
-export REDIS_URL="redis://localhost:6379/0"
-export REDIS_REQUIRED="false"
-
-uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
-```
+- 🌍 Add Terraform for cloud infrastructure provisioning
+- 🛠️ Add Ansible for server configuration automation
+- 📊 Add Prometheus and Grafana monitoring
+- ☁️ Deploy to AWS, Azure, or GCP
+- 🔐 Add sealed secrets or external secret management
+- 🚦 Add Ingress controller with custom domain
+- 📈 Add autoscaling with Kubernetes HPA
+- 🧪 Add deeper automated integration tests
 
 ---
 
-## Local frontend run without Docker
+## 👨‍💻 Author
 
-```bash
-cd app/frontend
-npm install
-export VITE_API_URL="http://localhost:8000"
-npm run dev
-```
+**Lakshay Walia**
 
-Frontend dev server:
+DevOps learner building real-world, production-style portfolio projects with Docker, CI/CD, Kubernetes, Jenkins, Helm, and cloud-ready practices.
+
+GitHub:
 
 ```text
-http://localhost:5173
+https://github.com/lakshaywalia666
 ```
 
 ---
 
-## Seed demo data
+## ⭐ Final Summary
 
-Start the backend first, then run:
-
-```bash
-curl -X POST http://localhost:8000/admin/seed
-```
-
----
-
-## DevOps portfolio purpose
-
-This repository is designed as a DevOps portfolio project, not just an application codebase.
-
-The main DevOps value comes from:
-
-- Containerizing legacy-style services
-- Creating repeatable local environments
-- Building CI/CD pipelines
-- Deploying to Kubernetes
-- Managing infrastructure with Terraform
-- Automating servers with Ansible
-- Adding monitoring and logging
-- Practicing backup and recovery
-- Operating a hybrid cloud + home server setup
-
----
-
-## Current milestone
-
-The project currently supports a complete local Dockerized workflow:
-
-```bash
-docker compose up -d
-```
-
-One command starts the full application stack:
+LegacyOps 2026 is a complete DevOps portfolio project showing:
 
 ```text
-postgres + redis + backend + frontend
+Docker + Docker Compose + GitHub Actions + GHCR + Jenkins + Kubernetes + Helm + PostgreSQL + Redis + Proof Documentation
 ```
+
+This project is designed to show practical DevOps ability through working infrastructure, automated validation, and documented deployment proof.
+
+EOF
+
+git add README.md
+git commit -m "Polish project README"
+git push -u origin feature/polish-project-readme
+
+gh pr create \
+  --base main \
+  --head feature/polish-project-readme \
+  --title "Polish project README" \
+  --body "## Summary
+- Add a detailed and polished GitHub README
+- Document architecture, Docker, CI/CD, Jenkins, Kubernetes, Helm, proof files, and future improvements
+- Improve project presentation for portfolio and recruiters
+
+## Validation
+- README documentation update only"
