@@ -22,10 +22,14 @@ Completed so far:
 - GitHub Actions CI pipeline
 - Pull request based workflow
 - CI validation for backend, frontend, and Docker Compose stack
+- GHCR container image publishing
+- Kubernetes base manifests
+- Kubernetes deployment using K3s
+- Frontend and backend verified through Kubernetes NodePort services
+- Kubernetes deployment proof documented in docs/kubernetes-deployment-proof.md
 
 Planned next milestones:
 
-- Kubernetes manifests
 - Helm chart
 - Jenkins pipeline
 - Terraform infrastructure
