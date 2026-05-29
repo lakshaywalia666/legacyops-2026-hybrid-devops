@@ -1,0 +1,34 @@
+.env.example
+.gitignore
+CODE_HANDOFF_STRUCTURE.txt
+README.md
+app/
+  backend/
+    app/
+      __init__.py
+      config.py
+      database.py
+      main.py
+      models.py
+      schemas.py
+    requirements.txt
+    tests/
+      conftest.py
+      test_health.py
+      test_products.py
+  frontend/
+    index.html
+    package.json
+    src/
+      App.jsx
+      api.js
+      main.jsx
+      styles.css
+  worker/
+    requirements.txt
+    worker.py
+docs/
+  API_CONTRACT.md
+  DATABASE_SCHEMA.md
+  DEVELOPER_PROMPT_USED.md
+  DEVOPS_HANDOFF_NOTES.md

@@ -1,0 +1,34 @@
+LEGACYOPS 2026 — APPLICATION CODE HANDOFF
+
+This package is the developer-side workload only.
+
+Included:
+- React frontend
+- FastAPI backend
+- Python Redis worker
+- PostgreSQL-ready SQLAlchemy models
+- Redis queue integration
+- Health/readiness/metrics endpoints
+- Product/customer/order/inventory APIs
+- API contract
+- Database schema notes
+- Minimal backend tests
+- Environment example
+
+Not included because Lakshay will do DevOps:
+- Dockerfile
+- Docker Compose
+- Kubernetes manifests
+- Helm chart
+- Terraform
+- Ansible
+- GitHub Actions
+- Jenkins
+- Argo CD
+- Monitoring/logging/backup automation
+
+Recommended first DevOps milestone:
+1. Add Dockerfiles for frontend, backend, and worker.
+2. Add docker/docker-compose.yml with PostgreSQL and Redis.
+3. Run local stack.
+4. Take screenshots of UI, /health, /ready, /metrics, and API docs.

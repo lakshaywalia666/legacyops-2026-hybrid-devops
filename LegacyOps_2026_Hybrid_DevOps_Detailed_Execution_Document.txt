@@ -1,0 +1,2281 @@
+LegacyOps 2026 — Hybrid Cloud DevOps Modernization Platform
+Detailed Execution Document for Lakshay Walia
+
+Version: 1.0
+Purpose: Flagship DevOps portfolio project for Junior DevOps Engineer, Cloud Support Engineer, Linux Support Engineer, Infrastructure Support Engineer, and DevOps Trainee roles.
+
+================================================================================
+1. PROJECT SUMMARY
+================================================================================
+
+Project Name:
+LegacyOps 2026 — Hybrid Cloud DevOps Modernization Platform
+
+Short tagline:
+A production-style DevOps modernization project where a legacy business application is containerized, automated, deployed, monitored, secured, backed up, and operated across a local home server and AWS.
+
+One-line resume pitch:
+Modernized a legacy-style business application into a hybrid AWS + homelab DevOps platform using Docker, Docker Compose, Kubernetes/K3s, Helm, Terraform, Ansible, Jenkins, GitHub Actions, Argo CD, Prometheus, Grafana, Loki, Trivy, and S3 backup automation.
+
+Core idea:
+You will create a simple legacy-style business application using AI, but your main work will be DevOps:
+- Dockerization
+- Local Docker Compose setup
+- Kubernetes deployment
+- Helm chart creation
+- AWS infrastructure using Terraform
+- Server automation using Ansible
+- CI/CD using GitHub Actions and Jenkins
+- GitOps deployment using Argo CD
+- Monitoring using Prometheus and Grafana
+- Logging using Loki and Promtail
+- Security scanning using Trivy, Gitleaks, and Checkov
+- Backup and restore using PostgreSQL dump + AWS S3
+- Incident simulation and rollback documentation
+
+This project should not look like a simple app project. It should look like an operations, infrastructure, cloud, automation, and reliability project.
+
+================================================================================
+2. WHY THIS PROJECT IS STRONG FOR RECRUITERS
+================================================================================
+
+Most junior DevOps candidates show only:
+- Dockerfile
+- Docker Compose
+- One Kubernetes deployment
+- Maybe Jenkins
+
+This project will show:
+- Real Linux server work
+- Hybrid environment: local home server + AWS EC2
+- Infrastructure as Code
+- Configuration management
+- Kubernetes packaging
+- GitOps
+- CI/CD
+- Monitoring
+- Logging
+- Backup
+- Restore
+- Security scanning
+- Incident handling
+- Documentation and screenshots
+
+This makes your profile stronger for:
+- Junior DevOps Engineer
+- Cloud Support Engineer
+- Linux Support Engineer
+- Infrastructure Support Engineer
+- Deployment Support Engineer
+- Cloud Operations Engineer
+- DevOps Trainee
+- NOC Engineer - Cloud/Linux
+- Observability Engineer - Junior
+
+Recruiter impression:
+“Candidate has practical hands-on knowledge of Linux, AWS, Docker, Kubernetes, CI/CD, monitoring, backups, and troubleshooting. Even if junior, he understands how real systems are operated.”
+
+================================================================================
+3. PROJECT STORY
+================================================================================
+
+Use this story everywhere: README, LinkedIn, interview, resume.
+
+Problem:
+A small business has an old legacy operations application. It is manually deployed on a Linux server, has no proper CI/CD, no containerization, no monitoring, no centralized logs, no backup automation, and no clear recovery plan.
+
+Solution:
+I modernized this legacy application into a hybrid cloud DevOps platform. I containerized the application with Docker, created a local Docker Compose environment, deployed it to Kubernetes using Helm, automated AWS infrastructure using Terraform, automated server setup using Ansible, implemented CI/CD using GitHub Actions and Jenkins, configured Argo CD GitOps, added Prometheus/Grafana monitoring, Loki logging, Trivy security scanning, S3 backups, and incident recovery runbooks.
+
+Before modernization:
+- Manual deployment
+- No repeatable environment
+- No CI/CD
+- No Kubernetes
+- No monitoring dashboards
+- No log search
+- No image scanning
+- No backup automation
+- No rollback plan
+- No infrastructure automation
+
+After modernization:
+- Dockerized application
+- Docker Compose local setup
+- Kubernetes staging and production deployment
+- Helm packaging
+- Terraform AWS infrastructure
+- Ansible server configuration
+- GitHub Actions CI
+- Jenkins operations pipelines
+- Argo CD GitOps
+- Prometheus and Grafana monitoring
+- Loki and Promtail logging
+- Trivy, Gitleaks, and Checkov security scanning
+- PostgreSQL backup to S3
+- Restore testing
+- Incident response documentation
+
+================================================================================
+4. APPLICATION IDEA
+================================================================================
+
+App Name:
+Legacy Retail Operations System
+
+Business domain:
+Retail / Inventory / Billing / Order Management
+
+You can create this app using AI. You do not need to focus heavily on coding. Your focus is DevOps.
+
+Recommended app modules:
+- Login page
+- Dashboard
+- Product management
+- Inventory management
+- Customer management
+- Order management
+- Billing / invoice records
+- Reports page
+- Admin page
+- Health endpoint
+- Readiness endpoint
+- Metrics endpoint
+
+Recommended technology stack:
+Frontend:
+- React or Next.js
+
+Backend:
+- FastAPI Python
+
+Database:
+- PostgreSQL
+
+Cache / Queue:
+- Redis
+
+Worker:
+- Python background worker
+
+Services:
+- frontend
+- backend
+- worker
+- postgres
+- redis
+
+Important backend endpoints:
+- GET /health
+- GET /ready
+- GET /metrics
+- GET /products
+- POST /products
+- GET /orders
+- POST /orders
+- GET /customers
+- POST /customers
+
+What recruiters care about:
+They do not care if the app is a perfect business app. They care that you deployed it properly, monitored it, backed it up, and automated the infrastructure.
+
+================================================================================
+5. FINAL ARCHITECTURE
+================================================================================
+
+High-level architecture:
+
+Developer Laptop / WSL
+        |
+        | git push
+        v
+GitHub Repository
+        |
+        | GitHub Actions CI
+        | - lint/test
+        | - Docker build
+        | - Trivy image scan
+        | - Gitleaks secret scan
+        | - push image to registry
+        | - optional Helm values update
+        v
+Container Registry
+        |
+        v
+GitOps Repository / Helm Chart
+        |
+        | Argo CD watches Git
+        v
+========================================================
+| Local Home Server - Staging Environment               |
+| Ubuntu Server                                         |
+| Docker                                                |
+| K3s Kubernetes                                        |
+| Argo CD                                               |
+| Prometheus + Grafana                                  |
+| Loki + Promtail                                       |
+| Uptime Kuma                                           |
+========================================================
+        |
+        | promotion / release approval
+        v
+========================================================
+| AWS Production Environment                            |
+| Terraform creates:                                    |
+| - VPC                                                |
+| - Subnet                                             |
+| - Security Group                                     |
+| - EC2 Ubuntu server                                  |
+| - ECR repository                                     |
+| - S3 backup bucket                                   |
+| - IAM policy/role                                    |
+| - CloudWatch log group                               |
+|                                                      |
+| Ansible configures:                                  |
+| - Linux hardening                                    |
+| - Docker                                             |
+| - K3s                                                |
+| - Helm                                               |
+| - Monitoring tools                                   |
+|                                                      |
+| Kubernetes runs:                                     |
+| - frontend                                           |
+| - backend                                            |
+| - worker                                             |
+| - postgres                                           |
+| - redis                                              |
+========================================================
+
+Monitoring:
+Prometheus + Grafana + Node Exporter + kube-state-metrics + Alertmanager
+
+Logging:
+Loki + Promtail + Grafana log explorer
+
+Availability:
+Uptime Kuma status checks
+
+Security:
+Trivy + Gitleaks + Checkov + UFW + Fail2Ban + IAM least privilege
+
+Backup:
+PostgreSQL dump -> compressed file -> AWS S3 -> restore validation
+
+================================================================================
+6. TOOLS TO INCLUDE
+================================================================================
+
+Cloud:
+- AWS EC2
+- AWS VPC
+- AWS Security Groups
+- AWS IAM
+- AWS ECR
+- AWS S3
+- AWS CloudWatch
+- AWS Budget / billing alert
+
+Linux:
+- Ubuntu Server
+- SSH
+- UFW
+- Fail2Ban
+- systemd
+- journalctl
+- cron
+- shell scripts
+
+Containers:
+- Docker
+- Docker Compose
+- Dockerfile
+- image tagging
+- healthchecks
+- container logs
+
+Kubernetes:
+- K3s
+- kubectl
+- namespaces
+- deployments
+- services
+- configmaps
+- secrets
+- persistent volumes
+- probes
+- resource requests and limits
+- ingress or NodePort
+- rollout and rollback
+
+Package management:
+- Helm
+- Helm values
+- Helm templates
+- Helm lint
+- Helm rollback
+
+Infrastructure as Code:
+- Terraform
+- modules
+- variables
+- outputs
+- terraform fmt
+- terraform validate
+- terraform plan
+- terraform apply
+- terraform destroy
+
+Configuration Management:
+- Ansible
+- inventory
+- playbooks
+- roles
+- variables
+- idempotent server setup
+
+CI/CD:
+- GitHub Actions
+- Jenkins
+- Jenkinsfile
+- artifact/version tagging
+- smoke tests
+- rollback job
+
+GitOps:
+- Argo CD
+- Application manifests
+- auto sync
+- self heal
+- prune
+- sync status
+- drift detection
+
+Monitoring:
+- Prometheus
+- Grafana
+- Node Exporter
+- kube-state-metrics
+- Alertmanager
+- Uptime Kuma
+
+Logging:
+- Loki
+- Promtail
+- Grafana Explore
+
+Security:
+- Trivy
+- Gitleaks
+- Checkov
+- non-root containers
+- Kubernetes secrets
+- IAM least privilege
+- firewall rules
+- SSH key authentication
+
+Backup and DR:
+- PostgreSQL dump
+- S3 upload
+- backup verification
+- restore test
+- incident runbook
+
+================================================================================
+7. REPOSITORY STRUCTURE
+================================================================================
+
+Recommended GitHub repository name:
+legacyops-2026-hybrid-devops
+
+Repository structure:
+
+legacyops-2026-hybrid-devops/
+├── README.md
+├── LICENSE
+├── .gitignore
+├── .env.example
+│
+├── docs/
+│   ├── 01-overview.md
+│   ├── 02-architecture.md
+│   ├── 03-before-after-modernization.md
+│   ├── 04-local-docker-compose.md
+│   ├── 05-aws-terraform.md
+│   ├── 06-ansible-automation.md
+│   ├── 07-kubernetes-helm.md
+│   ├── 08-gitops-argocd.md
+│   ├── 09-github-actions-ci.md
+│   ├── 10-jenkins-operations.md
+│   ├── 11-monitoring-grafana.md
+│   ├── 12-logging-loki.md
+│   ├── 13-security-devsecops.md
+│   ├── 14-backup-restore.md
+│   ├── 15-incident-runbook.md
+│   ├── 16-troubleshooting.md
+│   ├── 17-cost-safety.md
+│   └── screenshots/
+│
+├── app/
+│   ├── frontend/
+│   │   ├── Dockerfile
+│   │   ├── package.json
+│   │   └── src/
+│   │
+│   ├── backend/
+│   │   ├── Dockerfile
+│   │   ├── requirements.txt
+│   │   ├── app/
+│   │   └── tests/
+│   │
+│   └── worker/
+│       ├── Dockerfile
+│       ├── requirements.txt
+│       └── worker.py
+│
+├── docker/
+│   ├── docker-compose.yml
+│   └── docker-compose.override.yml
+│
+├── terraform/
+│   ├── environments/
+│   │   └── aws-prod/
+│   │       ├── main.tf
+│   │       ├── variables.tf
+│   │       ├── outputs.tf
+│   │       ├── terraform.tfvars.example
+│   │       └── backend.tf.example
+│   │
+│   └── modules/
+│       ├── vpc/
+│       ├── ec2/
+│       ├── ecr/
+│       ├── s3/
+│       ├── iam/
+│       └── security-group/
+│
+├── ansible/
+│   ├── inventory/
+│   │   ├── home.ini
+│   │   └── aws.ini.example
+│   │
+│   ├── playbooks/
+│   │   ├── 01-linux-hardening.yml
+│   │   ├── 02-install-docker.yml
+│   │   ├── 03-install-k3s.yml
+│   │   ├── 04-install-helm.yml
+│   │   ├── 05-install-jenkins.yml
+│   │   ├── 06-install-monitoring-tools.yml
+│   │   └── 07-full-server-setup.yml
+│   │
+│   └── roles/
+│       ├── linux-hardening/
+│       ├── docker/
+│       ├── k3s/
+│       ├── helm/
+│       ├── jenkins/
+│       └── monitoring/
+│
+├── helm/
+│   └── legacyops/
+│       ├── Chart.yaml
+│       ├── values.yaml
+│       ├── values-staging.yaml
+│       ├── values-prod.yaml
+│       └── templates/
+│           ├── frontend-deployment.yaml
+│           ├── backend-deployment.yaml
+│           ├── worker-deployment.yaml
+│           ├── postgres-statefulset.yaml
+│           ├── redis-deployment.yaml
+│           ├── services.yaml
+│           ├── configmap.yaml
+│           ├── secret.yaml
+│           ├── ingress.yaml
+│           └── hpa.yaml
+│
+├── argocd/
+│   ├── legacyops-staging.yaml
+│   └── legacyops-prod.yaml
+│
+├── k8s/
+│   ├── namespaces/
+│   ├── monitoring/
+│   ├── logging/
+│   ├── backup/
+│   └── rbac/
+│
+├── jenkins/
+│   ├── Jenkinsfile.deploy-staging
+│   ├── Jenkinsfile.promote-prod
+│   ├── Jenkinsfile.backup-db
+│   └── Jenkinsfile.rollback
+│
+├── .github/
+│   └── workflows/
+│       ├── ci.yml
+│       ├── docker-build-push.yml
+│       ├── security-scan.yml
+│       └── terraform-plan.yml
+│
+└── scripts/
+    ├── smoke-test.sh
+    ├── backup-db.sh
+    ├── restore-db.sh
+    ├── k8s-status.sh
+    ├── check-health.sh
+    ├── rotate-logs.sh
+    └── cleanup-aws.sh
+
+================================================================================
+8. EXECUTION ROADMAP
+================================================================================
+
+Recommended timeline:
+30 days
+
+Week 1:
+- Create app with AI
+- Dockerize services
+- Docker Compose local setup
+- GitHub repo structure
+- GitHub Actions CI
+- Security scan workflow
+
+Week 2:
+- Terraform AWS infrastructure
+- Ansible home server setup
+- Ansible AWS EC2 setup
+- K3s on home server
+- K3s on AWS EC2
+
+Week 3:
+- Helm chart
+- Kubernetes deployments
+- Argo CD GitOps
+- Jenkins deploy/backup/rollback jobs
+- App running on staging and production
+
+Week 4:
+- Prometheus/Grafana monitoring
+- Loki/Promtail logging
+- Uptime Kuma checks
+- S3 backup/restore
+- Incident simulations
+- Final README
+- Screenshots
+- LinkedIn post
+- Resume update
+
+================================================================================
+9. PHASE 1 — CREATE THE LEGACY APP
+================================================================================
+
+Goal:
+Create a simple business application that acts as the workload.
+
+You can use AI to generate the application.
+
+Prompt to give AI for app generation:
+
+"Create a simple legacy retail operations web application with React frontend, FastAPI backend, PostgreSQL database, Redis queue, and Python worker. It should include product management, inventory, customers, orders, billing records, dashboard page, health endpoint, readiness endpoint, and metrics endpoint. Keep code simple and Docker-friendly. Include environment variables and minimal tests."
+
+Minimum features:
+- Add product
+- List products
+- Add customer
+- List customers
+- Create order
+- List orders
+- Update inventory count
+- Simple dashboard numbers
+- Health endpoint
+- Metrics endpoint
+
+Backend endpoints:
+GET /health
+GET /ready
+GET /metrics
+GET /products
+POST /products
+GET /customers
+POST /customers
+GET /orders
+POST /orders
+
+Database tables:
+- products
+- customers
+- orders
+- order_items
+- inventory_events
+
+Important:
+Use .env.example, not real secrets.
+
+Deliverables:
+- App source code
+- Local app running
+- Health endpoint working
+- Database connection working
+- Basic tests passing
+
+Screenshots:
+- App UI
+- Health endpoint
+- API docs
+- Database records
+
+README section:
+"Application Overview"
+
+================================================================================
+10. PHASE 2 — DOCKERIZATION
+================================================================================
+
+Goal:
+Containerize the complete application.
+
+Create Dockerfiles:
+- app/frontend/Dockerfile
+- app/backend/Dockerfile
+- app/worker/Dockerfile
+
+Best practices:
+- Use lightweight base images
+- Add .dockerignore
+- Do not copy secrets
+- Use environment variables
+- Add healthcheck where possible
+- Run backend as non-root if possible
+- Keep image size reasonable
+
+Docker Compose services:
+- frontend
+- backend
+- worker
+- postgres
+- redis
+
+Example docker-compose service list:
+frontend:
+- exposes port 3000
+- talks to backend
+
+backend:
+- exposes port 8000
+- connects to postgres and redis
+- has healthcheck
+
+worker:
+- connects to postgres and redis
+- processes background tasks
+
+postgres:
+- persistent volume
+- database env vars
+
+redis:
+- lightweight redis container
+
+Commands to test:
+docker compose -f docker/docker-compose.yml up -d --build
+docker compose -f docker/docker-compose.yml ps
+docker compose -f docker/docker-compose.yml logs backend
+curl http://localhost:8000/health
+curl http://localhost:8000/ready
+
+Deliverables:
+- Dockerfiles
+- docker-compose.yml
+- containers running
+- app accessible locally
+
+Screenshots:
+- docker compose ps
+- backend logs
+- frontend page
+- health endpoint response
+
+README section:
+"Local Docker Compose Deployment"
+
+================================================================================
+11. PHASE 3 — GITHUB REPOSITORY SETUP
+================================================================================
+
+Goal:
+Make the repo professional and recruiter-friendly.
+
+Add:
+- README.md
+- .gitignore
+- .env.example
+- LICENSE
+- docs folder
+- architecture diagram
+- screenshots folder
+- clear commit history
+
+Recommended branch strategy:
+main:
+- stable code
+
+dev:
+- development branch
+
+feature branches:
+- feature/docker-compose
+- feature/terraform-aws
+- feature/ansible-k3s
+- feature/helm-chart
+- feature/argocd
+- feature/monitoring
+
+Commit message examples:
+- initial legacy app structure
+- add docker compose environment
+- add backend health and readiness endpoints
+- add GitHub Actions CI workflow
+- add Terraform AWS EC2 and ECR modules
+- add Ansible K3s installation playbook
+- add Helm chart for LegacyOps app
+- add Argo CD staging and production applications
+- add Prometheus and Grafana monitoring stack
+- add S3 backup and restore automation
+- add incident runbook and rollback workflow
+
+Deliverables:
+- Clean GitHub repo
+- Professional README
+- Useful docs
+- Screenshots folder
+
+================================================================================
+12. PHASE 4 — GITHUB ACTIONS CI
+================================================================================
+
+Goal:
+Show CI pipeline.
+
+Create workflows:
+.github/workflows/ci.yml
+.github/workflows/docker-build-push.yml
+.github/workflows/security-scan.yml
+.github/workflows/terraform-plan.yml
+
+ci.yml should:
+- checkout code
+- setup Python
+- install backend dependencies
+- run tests
+- optionally setup Node
+- build frontend
+- run lint if available
+
+docker-build-push.yml should:
+- checkout code
+- login to registry
+- build backend image
+- build frontend image
+- build worker image
+- tag image with commit SHA
+- push images
+
+security-scan.yml should:
+- run Trivy filesystem scan
+- run Trivy image scan
+- run Gitleaks
+- optionally upload scan reports
+
+terraform-plan.yml should:
+- run terraform fmt check
+- run terraform validate
+- run terraform plan
+- run Checkov scan
+
+Important:
+Use GitHub Secrets:
+- AWS_ACCESS_KEY_ID
+- AWS_SECRET_ACCESS_KEY
+- AWS_REGION
+- ECR_REGISTRY
+- ECR_REPOSITORY_BACKEND
+- ECR_REPOSITORY_FRONTEND
+- ECR_REPOSITORY_WORKER
+
+Do not commit:
+- AWS keys
+- .env
+- kubeconfig
+- SSH private keys
+- terraform.tfstate
+
+Deliverables:
+- Green CI workflow
+- Docker build workflow
+- Security scan workflow
+- Terraform plan workflow
+
+Screenshots:
+- GitHub Actions success
+- Trivy scan success
+- Docker image push
+- Terraform plan workflow
+
+README section:
+"CI with GitHub Actions"
+
+================================================================================
+13. PHASE 5 — AWS INFRASTRUCTURE WITH TERRAFORM
+================================================================================
+
+Goal:
+Provision AWS infrastructure using code.
+
+Important cost warning:
+Use small resources. Do not leave paid resources running without checking billing. Create AWS Budgets/billing alerts before long experiments. Avoid NAT Gateway and EKS running full-time if you want low cost.
+
+Recommended AWS resources:
+- VPC
+- public subnet
+- internet gateway
+- route table
+- security group
+- EC2 Ubuntu server
+- ECR repositories
+- S3 bucket for backups
+- IAM policy/role for S3/ECR access
+- CloudWatch log group
+- optional budget alert
+
+Avoid initially:
+- NAT Gateway
+- RDS
+- EKS full-time
+- Application Load Balancer full-time
+- large EC2 instances
+
+Terraform module plan:
+modules/vpc:
+- VPC
+- subnet
+- internet gateway
+- route table
+
+modules/security-group:
+- allow SSH from your IP only
+- allow HTTP/HTTPS if needed
+- allow app NodePort only if needed
+- restrict Grafana/Jenkins/Argo CD access
+
+modules/ec2:
+- Ubuntu AMI
+- instance type
+- key pair
+- security group
+- user data optional
+- public IP output
+
+modules/ecr:
+- frontend repository
+- backend repository
+- worker repository
+
+modules/s3:
+- backup bucket
+- versioning
+- lifecycle rules
+- encryption
+
+modules/iam:
+- IAM policy for ECR pull
+- IAM policy for S3 backup upload
+- optional EC2 instance profile
+
+Terraform commands:
+cd terraform/environments/aws-prod
+terraform init
+terraform fmt -recursive
+terraform validate
+terraform plan
+terraform apply
+
+Expected outputs:
+- ec2_public_ip
+- ecr_frontend_url
+- ecr_backend_url
+- ecr_worker_url
+- s3_backup_bucket_name
+
+Deliverables:
+- Terraform code
+- AWS infrastructure created
+- EC2 server running
+- ECR repos ready
+- S3 bucket ready
+
+Screenshots:
+- terraform plan
+- terraform apply
+- AWS EC2 instance
+- AWS ECR repositories
+- AWS S3 bucket
+- Security group rules
+
+README section:
+"AWS Infrastructure with Terraform"
+
+================================================================================
+14. PHASE 6 — SERVER CONFIGURATION WITH ANSIBLE
+================================================================================
+
+Goal:
+Configure local home server and AWS EC2 using Ansible.
+
+Targets:
+- home server staging
+- AWS EC2 production
+
+Ansible inventory:
+ansible/inventory/home.ini
+ansible/inventory/aws.ini.example
+
+Playbooks:
+01-linux-hardening.yml
+02-install-docker.yml
+03-install-k3s.yml
+04-install-helm.yml
+05-install-jenkins.yml
+06-install-monitoring-tools.yml
+07-full-server-setup.yml
+
+Linux hardening tasks:
+- update apt packages
+- create deploy user
+- setup SSH key access
+- disable password SSH login if safe
+- configure UFW
+- allow required ports
+- install Fail2Ban
+- set timezone
+- install common tools:
+  - curl
+  - wget
+  - git
+  - unzip
+  - htop
+  - net-tools
+  - jq
+  - vim
+  - ca-certificates
+
+Docker tasks:
+- install Docker
+- enable Docker service
+- add deploy user to docker group
+- install Docker Compose plugin
+- test docker run hello-world
+
+K3s tasks:
+- install K3s
+- copy kubeconfig
+- set KUBECONFIG
+- install kubectl completion
+- verify node ready
+
+Helm tasks:
+- install Helm
+- add common repos:
+  - prometheus-community
+  - grafana
+  - argo
+  - ingress-nginx if needed
+
+Jenkins tasks:
+- install Java
+- install Jenkins
+- start Jenkins
+- expose only safely
+- document initial password path
+
+Monitoring tasks:
+- install Node Exporter
+- install Uptime Kuma using Docker or Kubernetes
+- create basic server status script
+
+Useful commands:
+ansible -i inventory/home.ini all -m ping
+ansible-playbook -i inventory/home.ini playbooks/01-linux-hardening.yml
+ansible-playbook -i inventory/home.ini playbooks/07-full-server-setup.yml
+
+Deliverables:
+- Ansible playbooks
+- Home server configured
+- AWS EC2 configured
+- K3s running
+- Docker running
+- Helm ready
+
+Screenshots:
+- Ansible successful run
+- docker version
+- kubectl get nodes
+- ufw status
+- systemctl status k3s
+
+README section:
+"Server Automation with Ansible"
+
+================================================================================
+15. PHASE 7 — KUBERNETES DEPLOYMENT
+================================================================================
+
+Goal:
+Deploy the app on Kubernetes.
+
+Environment:
+- staging: local home server K3s
+- production: AWS EC2 K3s
+
+Kubernetes objects:
+- namespace: legacyops
+- frontend deployment
+- backend deployment
+- worker deployment
+- postgres StatefulSet or Deployment
+- redis deployment
+- services
+- configmaps
+- secrets
+- PVC for PostgreSQL
+- ingress or NodePort
+- readiness probes
+- liveness probes
+- resource requests
+- resource limits
+
+Recommended namespace:
+legacyops
+
+Recommended labels:
+app.kubernetes.io/name: legacyops
+app.kubernetes.io/component: frontend/backend/worker/postgres/redis
+app.kubernetes.io/environment: staging/prod
+
+Health checks:
+Backend liveness:
+GET /health
+
+Backend readiness:
+GET /ready
+
+Resource limits example:
+frontend:
+- requests: 100m CPU, 128Mi memory
+- limits: 300m CPU, 256Mi memory
+
+backend:
+- requests: 100m CPU, 256Mi memory
+- limits: 500m CPU, 512Mi memory
+
+worker:
+- requests: 100m CPU, 128Mi memory
+- limits: 300m CPU, 256Mi memory
+
+postgres:
+- requests: 250m CPU, 512Mi memory
+- limits: 1 CPU, 1Gi memory
+
+Commands:
+kubectl create namespace legacyops
+kubectl get ns
+kubectl get pods -n legacyops
+kubectl get svc -n legacyops
+kubectl describe pod <pod-name> -n legacyops
+kubectl logs deployment/backend -n legacyops
+
+Deliverables:
+- App running on K3s
+- Pods healthy
+- Services working
+- Health endpoints working
+- Database persistent storage
+
+Screenshots:
+- kubectl get pods -n legacyops
+- kubectl get svc -n legacyops
+- app browser screenshot
+- backend logs
+- scaling test
+
+README section:
+"Kubernetes Deployment"
+
+================================================================================
+16. PHASE 8 — HELM CHART
+================================================================================
+
+Goal:
+Package Kubernetes manifests using Helm.
+
+Chart path:
+helm/legacyops/
+
+Files:
+Chart.yaml
+values.yaml
+values-staging.yaml
+values-prod.yaml
+templates/frontend-deployment.yaml
+templates/backend-deployment.yaml
+templates/worker-deployment.yaml
+templates/postgres-statefulset.yaml
+templates/redis-deployment.yaml
+templates/services.yaml
+templates/configmap.yaml
+templates/secret.yaml
+templates/ingress.yaml
+templates/hpa.yaml
+
+Values should include:
+- image repository
+- image tag
+- replica count
+- service type
+- env vars
+- resource requests/limits
+- ingress enabled/disabled
+- persistence enabled/disabled
+- environment name
+
+Commands:
+helm lint helm/legacyops
+helm template legacyops helm/legacyops
+helm upgrade --install legacyops helm/legacyops -n legacyops --create-namespace -f helm/legacyops/values-staging.yaml
+helm list -n legacyops
+helm status legacyops -n legacyops
+helm rollback legacyops 1 -n legacyops
+
+Deliverables:
+- Helm chart
+- staging values
+- prod values
+- successful helm release
+- rollback proof
+
+Screenshots:
+- helm lint
+- helm list
+- helm status
+- kubectl get pods after helm install
+- helm rollback result
+
+README section:
+"Kubernetes Packaging with Helm"
+
+================================================================================
+17. PHASE 9 — ARGO CD GITOPS
+================================================================================
+
+Goal:
+Use GitOps for Kubernetes deployment.
+
+Install Argo CD on:
+- home server K3s
+- AWS EC2 K3s
+
+Argo CD apps:
+argocd/legacyops-staging.yaml
+argocd/legacyops-prod.yaml
+
+Staging app:
+- source: GitHub repo
+- path: helm/legacyops
+- values: values-staging.yaml
+- destination: home K3s
+- namespace: legacyops
+- auto-sync: enabled
+- self-heal: enabled
+- prune: enabled
+
+Production app:
+- source: GitHub repo
+- path: helm/legacyops
+- values: values-prod.yaml
+- destination: AWS K3s
+- namespace: legacyops
+- auto-sync: manual or enabled after testing
+- self-heal: enabled
+- prune: enabled
+
+GitOps workflow:
+1. Build new image.
+2. Update image tag in Helm values.
+3. Commit to GitHub.
+4. Argo CD detects change.
+5. Argo CD syncs cluster.
+6. Kubernetes rolls out new pods.
+7. Verify health checks.
+
+Commands:
+kubectl create namespace argocd
+kubectl apply -n argocd -f <argocd-install-manifest>
+kubectl get pods -n argocd
+kubectl apply -f argocd/legacyops-staging.yaml
+kubectl apply -f argocd/legacyops-prod.yaml
+
+Deliverables:
+- Argo CD installed
+- app synced
+- app healthy
+- GitOps deployment working
+- drift/self-heal demo
+
+Screenshots:
+- Argo CD dashboard
+- legacyops app Synced/Healthy
+- sync history
+- diff view
+- Git commit updating image tag
+
+README section:
+"GitOps with Argo CD"
+
+================================================================================
+18. PHASE 10 — JENKINS OPERATIONS PIPELINES
+================================================================================
+
+Goal:
+Use Jenkins for operational workflows, not just normal CI.
+
+Why Jenkins if GitHub Actions exists?
+GitHub Actions handles CI and security scans.
+Jenkins handles operations:
+- deploy to staging
+- promote to production
+- backup
+- rollback
+- smoke test
+
+Jenkins files:
+jenkins/Jenkinsfile.deploy-staging
+jenkins/Jenkinsfile.promote-prod
+jenkins/Jenkinsfile.backup-db
+jenkins/Jenkinsfile.rollback
+
+Pipeline 1: Deploy to Staging
+Stages:
+- checkout repo
+- helm lint
+- deploy to staging namespace
+- run smoke test
+- show kubectl status
+
+Pipeline 2: Promote to Production
+Stages:
+- manual approval
+- update prod image tag or use selected release
+- trigger Argo CD sync or commit prod values
+- run health check
+- notify success/failure
+
+Pipeline 3: Backup Database
+Stages:
+- connect to cluster
+- run pg_dump
+- compress backup
+- upload to S3
+- verify S3 object exists
+- cleanup old local backups
+
+Pipeline 4: Rollback
+Stages:
+- select previous release
+- helm rollback or git revert
+- run smoke test
+- show pod status
+
+Jenkins credentials:
+- kubeconfig for staging
+- kubeconfig for production
+- AWS credentials or IAM role
+- GitHub token if needed
+
+Security warning:
+Do not expose Jenkins publicly without authentication and firewall protection. Prefer access only from your IP or VPN.
+
+Deliverables:
+- Jenkins installed
+- deploy job working
+- backup job working
+- rollback job working
+- smoke tests working
+
+Screenshots:
+- Jenkins dashboard
+- successful deploy pipeline
+- successful backup pipeline
+- successful rollback pipeline
+- console output
+
+README section:
+"Operations Pipelines with Jenkins"
+
+================================================================================
+19. PHASE 11 — MONITORING WITH PROMETHEUS AND GRAFANA
+================================================================================
+
+Goal:
+Show observability and monitoring skills.
+
+Install:
+- Prometheus
+- Grafana
+- Node Exporter
+- kube-state-metrics
+- Alertmanager
+
+Recommended install:
+Use Helm charts.
+
+Monitor:
+- Linux node CPU
+- Linux node memory
+- disk usage
+- pod status
+- pod restarts
+- deployment availability
+- backend health
+- PostgreSQL up/down
+- Redis up/down
+- HTTP response
+- app error count if available
+
+Create 3 dashboards:
+
+Dashboard 1: Kubernetes Cluster Health
+Panels:
+- node CPU usage
+- node memory usage
+- disk usage
+- pod count
+- pod restarts
+- deployment replicas available
+- namespace resource usage
+
+Dashboard 2: Application Health
+Panels:
+- backend up/down
+- API request count
+- API error count
+- response latency
+- frontend availability
+- worker status
+- pod restart count
+
+Dashboard 3: Database and Redis
+Panels:
+- PostgreSQL availability
+- Redis availability
+- database connection status
+- queue activity
+- backup job success/failure
+
+Useful PromQL examples:
+up
+rate(container_cpu_usage_seconds_total[5m])
+container_memory_usage_bytes
+kube_pod_container_status_restarts_total
+kube_deployment_status_replicas_available
+kube_node_status_condition
+node_filesystem_avail_bytes
+node_memory_MemAvailable_bytes
+node_cpu_seconds_total
+
+Alerts:
+- backend down
+- frontend down
+- PostgreSQL down
+- pod restarting too often
+- high CPU usage
+- high memory usage
+- disk space low
+- backup failed
+- deployment replicas unavailable
+
+Deliverables:
+- Prometheus targets healthy
+- Grafana dashboards
+- alerts configured
+- monitoring documentation
+
+Screenshots:
+- Prometheus targets
+- Grafana dashboard 1
+- Grafana dashboard 2
+- Grafana dashboard 3
+- Alert rules
+- fired alert test
+
+README section:
+"Monitoring with Prometheus and Grafana"
+
+================================================================================
+20. PHASE 12 — LOGGING WITH LOKI AND PROMTAIL
+================================================================================
+
+Goal:
+Show log collection and troubleshooting.
+
+Install:
+- Loki
+- Promtail
+- Grafana Loki datasource
+
+Collect logs from:
+- backend pods
+- worker pods
+- frontend pods if needed
+- Kubernetes namespace
+- system pods optional
+
+Useful LogQL:
+{namespace="legacyops"}
+{app="backend"}
+{app="worker"}
+{app="backend"} |= "ERROR"
+{app="backend"} |= "database"
+{app="worker"} |= "processed"
+
+Create logging use cases:
+- search backend errors
+- search order creation logs
+- search database connection error
+- search worker job processing
+- filter logs by pod
+
+Deliverables:
+- Loki installed
+- Promtail collecting logs
+- Grafana Explore working
+- logs searchable
+
+Screenshots:
+- Loki datasource
+- backend logs in Grafana
+- error search
+- worker logs
+
+README section:
+"Centralized Logging with Loki"
+
+================================================================================
+21. PHASE 13 — SECURITY AND DEVSECOPS
+================================================================================
+
+Goal:
+Show security mindset.
+
+Security controls:
+- Trivy filesystem scan
+- Trivy container image scan
+- Gitleaks secret scan
+- Checkov Terraform scan
+- non-root containers where possible
+- no secrets in Git
+- .env.example only
+- Kubernetes Secrets
+- resource limits
+- SSH key authentication
+- UFW firewall
+- Fail2Ban
+- IAM least privilege
+- restricted security group
+- private keys not committed
+- Docker socket not exposed unnecessarily
+
+GitHub Actions security workflow:
+- run trivy fs .
+- run gitleaks detect
+- run checkov -d terraform/
+- scan Docker images
+
+Security documentation:
+docs/13-security-devsecops.md should include:
+- What was scanned
+- What issues were found
+- How they were fixed
+- How secrets are handled
+- AWS security group rules
+- IAM permissions
+- Kubernetes security practices
+
+Deliverables:
+- Security scan workflow
+- Passing scans
+- documented security practices
+
+Screenshots:
+- Trivy scan result
+- Gitleaks result
+- Checkov result
+- AWS security group
+- UFW status
+
+README section:
+"Security and DevSecOps"
+
+================================================================================
+22. PHASE 14 — BACKUP AND RESTORE
+================================================================================
+
+Goal:
+Show production support thinking.
+
+Backup target:
+PostgreSQL database
+
+Backup storage:
+AWS S3 bucket
+
+Backup methods:
+- Jenkins backup pipeline
+- Kubernetes CronJob
+- Bash script manual backup
+
+Recommended scripts:
+scripts/backup-db.sh
+scripts/restore-db.sh
+
+Backup flow:
+1. Connect to PostgreSQL pod/service.
+2. Run pg_dump.
+3. Compress backup file.
+4. Name backup with timestamp.
+5. Upload to S3.
+6. Verify upload.
+7. Delete old local backup.
+8. Log result.
+
+Restore flow:
+1. Download latest backup from S3.
+2. Stop app writes if needed.
+3. Restore database.
+4. Restart backend.
+5. Run smoke test.
+6. Verify data.
+
+S3 backup path:
+s3://legacyops-backups/postgres/YYYY/MM/DD/legacyops-db-TIMESTAMP.sql.gz
+
+Backup schedule:
+- daily backup for demo
+- manual Jenkins backup for screenshots
+
+Deliverables:
+- backup script
+- restore script
+- Jenkins backup job
+- backup in S3
+- restore test
+
+Screenshots:
+- Jenkins backup pipeline
+- S3 backup object
+- restore command output
+- app working after restore
+
+README section:
+"Backup and Restore"
+
+================================================================================
+23. PHASE 15 — INCIDENT SIMULATION
+================================================================================
+
+Goal:
+Show troubleshooting and recovery skills.
+
+Create docs/15-incident-runbook.md
+
+Incident 1: Pod Crash
+Action:
+kubectl delete pod <backend-pod> -n legacyops
+
+Expected:
+- Kubernetes recreates pod
+- app recovers
+- Grafana shows restart
+- logs show new pod start
+
+Document:
+- detection
+- impact
+- commands used
+- recovery time
+- prevention
+
+Incident 2: Bad Image Deployment
+Action:
+Change image tag to invalid tag.
+
+Expected:
+- pod fails ImagePullBackOff
+- Argo CD shows degraded
+- rollback via Git revert or Helm rollback
+
+Document:
+- detection
+- root cause
+- rollback command
+- result
+
+Incident 3: Database Down
+Action:
+Scale PostgreSQL down:
+kubectl scale statefulset postgres --replicas=0 -n legacyops
+
+Expected:
+- backend readiness fails
+- alert triggers
+- app recovers after scaling DB back
+
+Document:
+- symptoms
+- logs checked
+- recovery steps
+
+Incident 4: High CPU
+Action:
+Run stress test pod.
+
+Expected:
+- Grafana CPU spike
+- alert triggers
+
+Document:
+- detection
+- alert
+- resource impact
+- cleanup
+
+Incident 5: Node Reboot
+Action:
+Reboot home server or AWS EC2 after saving work.
+
+Expected:
+- K3s starts
+- pods recover
+- app becomes available
+- monitoring returns
+
+Document:
+- reboot recovery
+- services checked
+- final status
+
+Deliverables:
+- incident runbook
+- screenshots
+- recovery commands
+- lessons learned
+
+README section:
+"Incident Simulation and Recovery"
+
+================================================================================
+24. PHASE 16 — TROUBLESHOOTING DOCUMENT
+================================================================================
+
+Create docs/16-troubleshooting.md
+
+Include common problems:
+
+Docker:
+- container not starting
+- port already in use
+- database connection refused
+- image build failed
+- volume permission issue
+
+Kubernetes:
+- CrashLoopBackOff
+- ImagePullBackOff
+- Pending pod
+- service not reachable
+- readiness probe failed
+- PVC not bound
+- wrong namespace
+
+Helm:
+- template error
+- values file issue
+- release failed
+- rollback needed
+
+Argo CD:
+- app out of sync
+- app degraded
+- repo connection failed
+- wrong path
+- wrong namespace
+
+AWS:
+- SSH not working
+- security group blocked port
+- EC2 public IP changed
+- ECR login failed
+- S3 permission denied
+
+Monitoring:
+- Prometheus target down
+- Grafana datasource issue
+- Loki no logs
+- Node Exporter not scraped
+
+Jenkins:
+- kubeconfig not found
+- AWS credentials missing
+- pipeline permission issue
+- script permission denied
+
+Each issue should have:
+- symptom
+- cause
+- command to debug
+- fix
+- prevention
+
+================================================================================
+25. FINAL README TEMPLATE
+================================================================================
+
+README structure:
+
+# LegacyOps 2026 — Hybrid Cloud DevOps Modernization Platform
+
+## Overview
+A production-style DevOps modernization project where a legacy retail operations app is containerized, deployed, monitored, secured, backed up, and operated across a local K3s homelab and AWS EC2-based K3s environment.
+
+## Problem Statement
+The original application was manually deployed, had no repeatable environment, no CI/CD, no monitoring, no centralized logs, no automated backups, and no rollback process.
+
+## Solution
+The app was modernized using Docker, Docker Compose, Kubernetes/K3s, Helm, Terraform, Ansible, GitHub Actions, Jenkins, Argo CD, Prometheus, Grafana, Loki, Trivy, and S3 backup automation.
+
+## Architecture
+Include diagram here.
+
+## Tech Stack
+List all tools.
+
+## Local Docker Compose Setup
+Commands and screenshots.
+
+## AWS Infrastructure with Terraform
+What Terraform creates.
+
+## Server Automation with Ansible
+What Ansible configures.
+
+## Kubernetes Deployment with Helm
+Kubernetes resources and Helm commands.
+
+## GitOps with Argo CD
+How Argo CD deploys staging and production.
+
+## CI with GitHub Actions
+CI and security workflows.
+
+## Operations Pipelines with Jenkins
+Deploy, backup, rollback jobs.
+
+## Monitoring with Prometheus and Grafana
+Dashboards and alerts.
+
+## Logging with Loki
+Logs search and troubleshooting.
+
+## Security and DevSecOps
+Trivy, Gitleaks, Checkov, firewall, IAM.
+
+## Backup and Restore
+PostgreSQL backup to S3 and restore test.
+
+## Incident Simulation
+Pod crash, bad image, DB down, high CPU, reboot recovery.
+
+## Screenshots
+Add all screenshots.
+
+## What I Learned
+Write learning points.
+
+## Resume Highlights
+Add final bullets.
+
+================================================================================
+26. SCREENSHOT CHECKLIST
+================================================================================
+
+Take screenshots for proof:
+
+Application:
+[ ] App homepage
+[ ] Products page
+[ ] Orders page
+[ ] API health endpoint
+[ ] API docs
+
+Docker:
+[ ] docker compose ps
+[ ] docker images
+[ ] backend logs
+[ ] local app running
+
+GitHub:
+[ ] clean repository
+[ ] README preview
+[ ] GitHub Actions CI success
+[ ] security scan success
+[ ] Docker build workflow success
+
+AWS:
+[ ] EC2 running
+[ ] ECR repositories
+[ ] ECR images
+[ ] S3 backup bucket
+[ ] Security group rules
+[ ] CloudWatch log group
+[ ] AWS Budget or billing alert
+
+Terraform:
+[ ] terraform init
+[ ] terraform validate
+[ ] terraform plan
+[ ] terraform apply
+[ ] terraform output
+
+Ansible:
+[ ] ansible ping
+[ ] playbook successful run
+[ ] Docker installed
+[ ] K3s installed
+[ ] UFW status
+
+Kubernetes:
+[ ] kubectl get nodes
+[ ] kubectl get pods -n legacyops
+[ ] kubectl get svc -n legacyops
+[ ] kubectl describe pod
+[ ] kubectl logs backend
+[ ] scaling test
+
+Helm:
+[ ] helm lint
+[ ] helm list
+[ ] helm status
+[ ] helm rollback
+
+Argo CD:
+[ ] app synced
+[ ] app healthy
+[ ] sync history
+[ ] diff view
+[ ] self-heal test
+
+Jenkins:
+[ ] Jenkins dashboard
+[ ] deploy pipeline success
+[ ] backup pipeline success
+[ ] rollback pipeline success
+[ ] console output
+
+Monitoring:
+[ ] Prometheus targets
+[ ] Grafana cluster dashboard
+[ ] Grafana app dashboard
+[ ] Grafana database dashboard
+[ ] alert rules
+
+Logging:
+[ ] Loki datasource
+[ ] backend logs
+[ ] worker logs
+[ ] error search
+
+Backup:
+[ ] backup script running
+[ ] S3 backup file
+[ ] restore success
+[ ] app working after restore
+
+Incident:
+[ ] pod crash recovery
+[ ] bad image rollback
+[ ] database down alert
+[ ] high CPU dashboard
+[ ] node reboot recovery
+
+================================================================================
+27. GITHUB TOPICS
+================================================================================
+
+Add these topics to GitHub:
+
+devops
+aws
+linux
+docker
+docker-compose
+kubernetes
+k3s
+terraform
+ansible
+jenkins
+github-actions
+argocd
+helm
+prometheus
+grafana
+loki
+sre
+gitops
+observability
+devsecops
+homelab
+cloud
+infrastructure
+monitoring
+backup
+disaster-recovery
+
+================================================================================
+28. RESUME BULLETS AFTER COMPLETION
+================================================================================
+
+Project:
+LegacyOps 2026 — Hybrid Cloud DevOps Modernization Platform
+
+Bullets:
+- Modernized a legacy-style business application into a hybrid DevOps platform using Docker Compose, K3s Kubernetes, Helm, Argo CD, Jenkins, GitHub Actions, Terraform, and Ansible.
+- Provisioned AWS infrastructure using Terraform, including EC2, VPC, Security Groups, IAM, ECR, S3 backup bucket, and CloudWatch logging.
+- Automated Linux server configuration using Ansible for Docker, K3s, Helm, UFW firewall hardening, Fail2Ban, monitoring tools, and operational scripts.
+- Implemented CI/CD using GitHub Actions for testing, Docker image builds, Trivy scanning, Gitleaks checks, and registry pushes, with Jenkins pipelines for deployment, backup, and rollback workflows.
+- Deployed Prometheus, Grafana, Loki, Promtail, Node Exporter, kube-state-metrics, Alertmanager, and Uptime Kuma for metrics, logs, dashboards, uptime checks, and incident visibility.
+- Created PostgreSQL backup and restore automation with S3 storage and documented incident runbooks for pod failures, bad deployments, database downtime, high CPU, and rollback recovery.
+
+Short resume version:
+LegacyOps 2026 — Hybrid Cloud DevOps Modernization Platform
+Docker, Kubernetes/K3s, Helm, AWS, Terraform, Ansible, Jenkins, GitHub Actions, Argo CD, Prometheus, Grafana, Loki, Trivy, S3
+- Built a production-style hybrid DevOps modernization platform using local K3s staging and AWS EC2-based K3s production.
+- Automated AWS infrastructure, Linux configuration, CI/CD, GitOps deployment, monitoring, logging, security scanning, backup, restore, and incident recovery workflows.
+
+================================================================================
+29. LINKEDIN PROJECT DESCRIPTION
+================================================================================
+
+Title:
+LegacyOps 2026 — Hybrid Cloud DevOps Modernization Platform
+
+Description:
+Built a production-style hybrid DevOps modernization project where a legacy retail operations application was containerized, deployed, monitored, secured, backed up, and operated across a local homelab and AWS environment.
+
+The project includes Docker and Docker Compose for local development, K3s Kubernetes for staging and production clusters, Helm for Kubernetes packaging, Terraform for AWS infrastructure, Ansible for Linux server automation, GitHub Actions for CI and security scanning, Jenkins for deployment/backup/rollback operations, Argo CD for GitOps, Prometheus and Grafana for monitoring, Loki and Promtail for centralized logs, Trivy/Gitleaks/Checkov for DevSecOps scanning, and AWS S3 for PostgreSQL backup and restore automation.
+
+This project helped me practice practical DevOps work around cloud infrastructure, Linux server operations, deployment automation, Kubernetes troubleshooting, observability, backup/restore, and incident response.
+
+Skills:
+AWS, Linux, Docker, Docker Compose, Kubernetes, K3s, Helm, Terraform, Ansible, Jenkins, GitHub Actions, Argo CD, Prometheus, Grafana, Loki, S3, ECR, DevOps, GitOps, CI/CD, Monitoring, Backup, Troubleshooting
+
+================================================================================
+30. LINKEDIN POST AFTER COMPLETION
+================================================================================
+
+Post:
+I completed LegacyOps 2026, a hybrid cloud DevOps modernization project built across AWS and my local homelab server.
+
+The goal was to take a legacy-style business application and modernize its deployment and operations using real DevOps practices.
+
+The project covers:
+- Docker and Docker Compose for local deployment
+- Terraform for AWS infrastructure
+- Ansible for Linux server automation
+- K3s Kubernetes on homelab and AWS EC2
+- Helm for Kubernetes packaging
+- Argo CD for GitOps deployment
+- GitHub Actions for CI and security scanning
+- Jenkins for deployment, backup, and rollback jobs
+- Prometheus, Grafana, Loki, and Uptime Kuma for observability
+- AWS S3-based PostgreSQL backup and restore automation
+- Incident simulations and recovery runbooks
+
+This project helped me practice real DevOps responsibilities around deployment, monitoring, automation, infrastructure provisioning, cloud support, and troubleshooting.
+
+#DevOps #AWS #Linux #Docker #Kubernetes #Terraform #Ansible #Jenkins #GitHubActions #ArgoCD #Prometheus #Grafana #GitOps #CloudComputing
+
+================================================================================
+31. INTERVIEW EXPLANATION
+================================================================================
+
+When interviewer asks:
+"Tell me about your project."
+
+Answer:
+LegacyOps 2026 is a hybrid cloud DevOps modernization project. I created a legacy-style retail operations application and focused on modernizing its deployment and operations. I containerized the app using Docker and Docker Compose, deployed it to K3s Kubernetes using Helm, automated AWS infrastructure using Terraform, configured Linux servers using Ansible, implemented CI/CD using GitHub Actions and Jenkins, used Argo CD for GitOps deployment, added Prometheus and Grafana monitoring, Loki logging, Trivy/Gitleaks/Checkov security scanning, and PostgreSQL backup/restore automation using AWS S3.
+
+The main goal was not only deployment but also operations: monitoring, logging, backup, rollback, and incident simulation. I tested pod crash recovery, bad image rollback, database downtime, and high CPU scenarios.
+
+When interviewer asks:
+"Why K3s instead of EKS?"
+
+Answer:
+I used K3s because it is lightweight and cost-friendly for a free-tier/homelab project. The goal was to practice Kubernetes operations, deployments, Helm, GitOps, monitoring, and troubleshooting without running expensive managed Kubernetes resources continuously. I can still explain how the same workloads could be moved to EKS later.
+
+When interviewer asks:
+"What was your role?"
+
+Answer:
+The application was generated with AI assistance, but the DevOps work was done by me: Dockerization, Linux server setup, Terraform, Ansible, Kubernetes, Helm, GitOps, CI/CD, monitoring, logging, backup, restore, and incident documentation.
+
+When interviewer asks:
+"What problems did you face?"
+
+Answer:
+Common issues included Docker networking, database readiness, Kubernetes image pull issues, wrong environment variables, readiness probe failures, Helm values mistakes, security group port access, and backup permission issues with S3. I documented these issues in the troubleshooting section with commands and fixes.
+
+When interviewer asks:
+"What is the strongest part of this project?"
+
+Answer:
+The strongest part is that it covers complete DevOps operations, not only deployment. It includes automated infrastructure, server configuration, CI/CD, GitOps, monitoring, logging, security scanning, backup/restore, and incident runbooks.
+
+================================================================================
+32. DAILY EXECUTION CHECKLIST
+================================================================================
+
+Day 1:
+[ ] Create GitHub repo
+[ ] Create folder structure
+[ ] Generate app using AI
+[ ] Add README skeleton
+
+Day 2:
+[ ] Backend health endpoint
+[ ] Backend ready endpoint
+[ ] Backend metrics endpoint
+[ ] Frontend basic UI
+
+Day 3:
+[ ] Dockerfile for backend
+[ ] Dockerfile for frontend
+[ ] Dockerfile for worker
+[ ] Docker Compose setup
+
+Day 4:
+[ ] Test local app
+[ ] Add .env.example
+[ ] Add screenshots
+[ ] Write local Docker docs
+
+Day 5:
+[ ] GitHub Actions CI
+[ ] Run tests
+[ ] Build images
+
+Day 6:
+[ ] Add Trivy scan
+[ ] Add Gitleaks scan
+[ ] Add Checkov scan
+
+Day 7:
+[ ] Clean README
+[ ] Push Week 1 screenshots
+
+Day 8:
+[ ] Terraform VPC
+[ ] Terraform security group
+[ ] Terraform EC2
+
+Day 9:
+[ ] Terraform ECR
+[ ] Terraform S3
+[ ] Terraform IAM
+
+Day 10:
+[ ] Terraform apply
+[ ] AWS screenshots
+[ ] Cost safety docs
+
+Day 11:
+[ ] Ansible inventory
+[ ] Linux hardening playbook
+[ ] Docker install playbook
+
+Day 12:
+[ ] K3s install playbook
+[ ] Helm install playbook
+[ ] Test home server
+
+Day 13:
+[ ] Test AWS EC2 Ansible
+[ ] K3s on AWS
+
+Day 14:
+[ ] Document Terraform and Ansible
+
+Day 15:
+[ ] Create Kubernetes manifests
+[ ] Deploy app manually to K3s
+
+Day 16:
+[ ] Create Helm chart
+[ ] Add values-staging
+[ ] Add values-prod
+
+Day 17:
+[ ] Deploy using Helm
+[ ] Test rollback
+
+Day 18:
+[ ] Install Argo CD home server
+[ ] Create staging app
+
+Day 19:
+[ ] Install Argo CD AWS
+[ ] Create production app
+
+Day 20:
+[ ] GitOps sync test
+[ ] Screenshot Argo CD
+
+Day 21:
+[ ] Install Jenkins
+[ ] Create deploy staging pipeline
+
+Day 22:
+[ ] Create promote prod pipeline
+[ ] Create backup pipeline
+
+Day 23:
+[ ] Create rollback pipeline
+[ ] Screenshot Jenkins
+
+Day 24:
+[ ] Install Prometheus
+[ ] Install Grafana
+[ ] Add Node Exporter
+
+Day 25:
+[ ] Create dashboards
+[ ] Add alerts
+
+Day 26:
+[ ] Install Loki
+[ ] Install Promtail
+[ ] Test logs
+
+Day 27:
+[ ] Backup script
+[ ] Restore script
+[ ] S3 backup test
+
+Day 28:
+[ ] Incident pod crash
+[ ] Incident bad image
+[ ] Incident DB down
+
+Day 29:
+[ ] Incident high CPU
+[ ] Incident reboot recovery
+[ ] Final screenshots
+
+Day 30:
+[ ] Final README
+[ ] LinkedIn project update
+[ ] Resume bullets
+[ ] Naukri project update
+
+================================================================================
+33. COST AND SAFETY RULES
+================================================================================
+
+Important:
+Because you are using AWS Free Tier / limited budget, be careful.
+
+Rules:
+1. Create AWS Budget alert before starting.
+2. Use small EC2 instance.
+3. Stop EC2 when not using.
+4. Avoid NAT Gateway.
+5. Avoid EKS full-time.
+6. Avoid RDS unless you intentionally test it briefly.
+7. Avoid Load Balancer if not needed.
+8. Delete unused EBS volumes.
+9. Delete unused Elastic IPs.
+10. Destroy Terraform resources after screenshots if needed.
+11. Never commit AWS keys.
+12. Never make Jenkins/Grafana/Argo CD public without protection.
+13. Restrict SSH to your IP.
+14. Use .env.example only.
+15. Keep a cleanup script.
+
+Cleanup command:
+terraform destroy
+
+Also manually check:
+- EC2
+- EBS volumes
+- Elastic IP
+- Load Balancers
+- NAT Gateway
+- ECR storage
+- S3 bucket
+- CloudWatch logs
+
+================================================================================
+34. FINAL QUALITY TARGET
+================================================================================
+
+To make this a 9/10 project, the final GitHub repo must include:
+
+[ ] Working app
+[ ] Docker Compose local setup
+[ ] Dockerfiles
+[ ] Terraform AWS infra
+[ ] Ansible server automation
+[ ] K3s Kubernetes deployment
+[ ] Helm chart
+[ ] Argo CD GitOps
+[ ] GitHub Actions CI
+[ ] Jenkins operational pipelines
+[ ] Prometheus/Grafana monitoring
+[ ] Loki/Promtail logging
+[ ] Uptime Kuma checks
+[ ] Trivy/Gitleaks/Checkov scans
+[ ] PostgreSQL backup to S3
+[ ] Restore test
+[ ] Incident runbook
+[ ] Troubleshooting guide
+[ ] Architecture diagram
+[ ] Screenshots
+[ ] Clear README
+[ ] LinkedIn post
+[ ] Resume bullets
+
+If you complete these properly, this project can become your flagship DevOps portfolio project.
+
+================================================================================
+35. FINAL NOTE
+================================================================================
+
+Do not present this as fake company production experience.
+
+Present it honestly as:
+"Production-style hybrid DevOps modernization project"
+
+Your strongest line:
+"I used AI to generate the application workload, but I performed the DevOps implementation myself: Dockerization, AWS infrastructure, Linux automation, Kubernetes deployment, CI/CD, GitOps, monitoring, logging, security scanning, backup, restore, and incident troubleshooting."
+
+This is honest, professional, and strong.
+
+End of document.
